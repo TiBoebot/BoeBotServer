@@ -21,12 +21,13 @@ if grep -Fxq "serverjava" /etc/rc.local
 then
 echo Already installed in rc.local
 else
-sed -i "s#exit 0#cd ${BASEDIR}\nserverjava server/Main\nexit 0#g" /etc/rc.local
+sed -i "s#exit 0#cd ${BASEDIR}\nserverjava server/Main &\nexit 0#g" /etc/rc.local
 fi
 
 #install boebot library
 cd /home/pi
 git clone https://github.com/TiBoebot/BotBotLib.git /home/pi/BoeBotLib
+cp /home/PIGPIO/libpgpio.so /home/pi/BoeBotLib
 mkdir /home/pi/upload
 chmod 777 /home/pi/upload
 chown pi:pi /home/pi/upload
